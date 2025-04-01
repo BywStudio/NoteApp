@@ -37,8 +37,8 @@
         border: 1px solid hsla(160, 100%, 37%, 1);
       }
       .icon-text {
-        transition: all ease-in-out 1s;
-        color: #fff;
+        transition: all ease-in-out 0.5s;
+        color: hsla(160, 100%, 37%, 1);
         line-height: 2rem;
       }
     }
