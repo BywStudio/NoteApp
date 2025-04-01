@@ -7,7 +7,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template:{
+        // 添加以下内容
+        compilerOptions:{
+          isCustomElement: tag => tag.startsWith('box')
+        }
+      }
+    }),
     vueDevTools(),
   ],
   resolve: {

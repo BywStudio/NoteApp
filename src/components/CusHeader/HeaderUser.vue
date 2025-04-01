@@ -1,21 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, defineProps} from 'vue'
+import LogginStore from '@/stores/login';
 
-const props = defineProps({
-  isLoggin: {
-    type: Boolean
-  }
-})
+let logginStore = LogginStore()
 
-let userName = ref('')
-
+let ImgSrc = localStorage.getItem('avatar')
 
 </script>
 
 <template>
   <div class="user-avatar">
-    <div class="avatar-test">{{isLoggin ? userName : '未登录'}}</div>
-    <img src="" alt="avatar" class="avatar" v-if="isLoggin"/>
+    <div class="avatar-test" @click="logginStore.showLogin = false" v-if="!logginStore.isLoggin">
+      点击登录
+    </div>
+    <img :src="ImgSrc" title="头像" v-else/>
   </div>
 </template>
 
@@ -30,9 +28,8 @@ let userName = ref('')
   img {
     width: 2rem;
     height: 2rem;
-    background-color: pink;
     border-radius: 50%;
-    align-self: center;
+    margin-top: 0.5rem;
     margin-left: 0.5rem;
   }
 }

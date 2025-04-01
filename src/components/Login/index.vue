@@ -20,7 +20,9 @@ const tabs = {
       <div :class="{active: isActive}" @click="currentTab = 'Login'; isActive=true">登录</div>
       <div :class="{active: !isActive}" @click="currentTab = 'Register'; isActive=false">注册</div>
     </div>
-    <component :is="tabs[currentTab]"></component>
+    <keep-alive>
+      <component :is="tabs[currentTab]"></component>
+    </keep-alive>
   </div>
 </template>
 

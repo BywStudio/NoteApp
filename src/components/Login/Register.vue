@@ -78,7 +78,7 @@ function registerSubmit() {
 <template>
     <form v-on:submit.prevent id="register-form">
         <div class="input-item">
-            <input type="text" placeholder="请输入用户名" v-model="userInfo.username">
+            <input type="text" placeholder="请输入用户名" v-model="userInfo.username" autofocus>
         </div>
         <div class="input-item">
             <input type="phone" placeholder="请输入手机号" v-model="userInfo.phone">
@@ -90,7 +90,7 @@ function registerSubmit() {
             <input type="password" placeholder="请确认密码" v-model="userInfo.confirmPassword">
         </div>
         <div class="input-item">
-            <button @click="registerSubmit">点击注册</button>
+            <button @click="registerSubmit" @keyup.enter="registerSubmit">点击注册</button>
         </div>
     </form>
 </template>
