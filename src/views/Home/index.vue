@@ -1,15 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import LogginStore from '@/stores/login'
 import request from '@/requests'
+import { ElMessage } from 'element-plus'
 
 import HeaderSearch from '@/components/CusHeader/HeaderSearch.vue'
 import HeaderUser from '@/components/CusHeader/HeaderUser.vue'
 import Login from '@/components/Login/index.vue'
-import { ElMessage } from 'element-plus'
+import HeaderSettings from '@/components/CusHeader/HeaderSettings.vue'
 
-const router = useRouter()
 
 const logginStore = LogginStore()
 
@@ -32,6 +31,7 @@ onMounted(() => {
     if(res.data.status === 0) {
       logginStore.isLoggin = true
       localStorage.setItem('avatar', res.data.data.avatar)
+      localStorage.setItem('username', res.data.data.username)  
     }
   })
 })
@@ -51,6 +51,9 @@ onMounted(() => {
         <div class="user">
           <HeaderUser />
         </div> 
+        <div class="Settings" v-if="logginStore.avatarMove">
+          <HeaderSettings />
+        </div>
       </div>
     </div>
   </div>

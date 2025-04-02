@@ -1,10 +1,14 @@
 <script setup>
-import { ref, onMounted, defineProps} from 'vue'
-import LogginStore from '@/stores/login';
+import LogginStore from '@/stores/login'
 
-let logginStore = LogginStore()
+const logginStore = LogginStore()
 
-let ImgSrc = localStorage.getItem('avatar')
+let imgSrc = localStorage.getItem('avatar')
+let username = localStorage.getItem('username')
+
+let enterAvatarMove = () => {
+  logginStore.avatarMove = true
+}
 
 </script>
 
@@ -12,9 +16,11 @@ let ImgSrc = localStorage.getItem('avatar')
   <div class="user-avatar">
     <div class="avatar-test" @click="logginStore.showLogin = false" v-if="!logginStore.isLoggin">
       点击登录
-    </div>
-    <img :src="ImgSrc" title="头像" v-else/>
+    </div>  
+    <img src="@/assets/user.png" alt="" v-else-if="imgSrc === null"/>
+    <img :src="imgSrc" :title="username" v-else @mouseenter="enterAvatarMove" />
   </div>
+  
 </template>
 
 <style scoped>

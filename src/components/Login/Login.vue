@@ -45,7 +45,10 @@ function loginSubmit() {
                     type: 'success',
                     message: res.data.message
                 }),
-                localStorage.setItem('token', res.data.token)         
+                localStorage.setItem('token', res.data.token),
+                setTimeout(() => {
+                    location.reload()
+                }, 2000)
             )
         }else {
             return ElMessage({
